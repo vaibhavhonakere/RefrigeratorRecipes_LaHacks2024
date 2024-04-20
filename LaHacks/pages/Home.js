@@ -5,9 +5,13 @@ import React, {useState} from 'react';
 import { Button, IconButton, MD3Colors } from 'react-native-paper';
 import { getGeminiVisionRes } from '../src/api/gemini_vision';
 
+// import LottieView from "lottie-react-native";
+
 export default function Home() {
+
   const [image, setImage] = useState('');
   const [foodName, setFoodName] = useState('');
+
 
   let options = {
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -17,13 +21,12 @@ export default function Home() {
   const handleImageSelect = async () => {
     let result = await ImagePicker.launchImageLibraryAsync(options);
     if (!result.canceled) {
-
       setImage(result.assets[0].uri);
-        
+
       if (result.assets[0].base64) {
         const reponse = await getGeminiVisionRes(result.assets[0].base64);
         setFoodName(reponse);
-      } 
+      }       
     }
   }
   return (
