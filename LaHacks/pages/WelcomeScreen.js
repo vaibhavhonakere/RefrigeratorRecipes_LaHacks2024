@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const WelcomeScreen = (navigation) => {
+const WelcomeScreen = ({navigation}) => {
     const navHome = () =>{
-        navigation.navigate("Register"); // Adjust the navigation route as necessary
+        navigation.navigate('Home'); // Adjust the navigation route as necessary
     }
   return (
     <View style={styles.container}>
