@@ -9,12 +9,12 @@ const RecipesScreen = ({navigation, ingredients}) => {
   const [loading, setLoading] = useState(false);
 
   const route = useRoute();
-  const geminiResponse = route.params?.data;
+  const ingredients = route.params?.data;
 
   console.log('Gemini Response:', geminiResponse);
 
   useEffect(() => {
-    const ingredients = ['tomatoes', 'carrots', 'onions', 'celery'];
+    //const ingredients = ['tomatoes', 'carrots', 'onions', 'celery'];
     const arrayIngredients = ingredients.join(',+');
     const apiKey = '8cf0bcaf19994ea4b3a57d7449e0e192'; // Replace with your actual API key
     const fetchRecipes = async () => {
