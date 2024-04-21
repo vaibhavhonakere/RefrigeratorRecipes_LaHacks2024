@@ -377,9 +377,10 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 28, // Larger font size
+    paddingTop: 30, // Add space between the header and the content
     fontWeight: 'bold', // Bold font weight
     color: '#DAA599', // A gold-like color for contrast and to "pop"
-    textShadowColor: 'rgba(0, 0, 0, 0.90)', // Shadow color
+    //textShadowColor: 'rgba(0, 0, 0, 0.90)', // Shadow color
     // textShadowOffset: { width: -1, height: 1 }, // Shadow offset
     textShadowRadius: 10, // Shadow blur radius
   },
