@@ -4,7 +4,7 @@ import axios from 'axios';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; // Make sure this package is installed
 import { useRoute } from '@react-navigation/native';
 
-const RecipesScreen = ({navigation, ingredients}) => {
+const RecipesScreen = ({navigation}) => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
