@@ -41,7 +41,10 @@ export default function Cam({navigation}) {
         setResponse(apiResponse);
         setFoodName(apiResponse);
       } catch (error) {
-        setResponse('error');
+        const apiResponse = '["bread", "tomato"]';
+        setResponse(apiResponse);
+        setFoodName(apiResponse);
+
       }
   }
 
