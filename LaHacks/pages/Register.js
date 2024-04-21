@@ -11,11 +11,11 @@ const Register = ({navigation}) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const route = useRoute();
-  const ingredients = JSON.parse(route.params?.data);
 
   // Implement the sign-up logic
   const handleSignUp = () => {
     console.log('Sign Up with email:', email, 'password:', password);
+    navigation.navigate('Home');
     // Proceed with the sign-up process
   };
 
