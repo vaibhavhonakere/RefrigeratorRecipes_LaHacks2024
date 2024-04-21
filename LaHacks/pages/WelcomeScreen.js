@@ -1,82 +1,81 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const WelcomeScreen = ({navigation}) => {
-    const navHome = () =>{
-        navigation.navigate('Home'); // Adjust the navigation route as necessary
-    }
-  return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Image source={require('../images/fridge.png')} style={styles.logo} />
-        <Text style={styles.title}>SnapChef</Text>
+const WelcomeScreen = ({ navigation }) => {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Snacking Time</Text>
+        <Text style={styles.subtitle}>Cooking App</Text>
+        <View style={styles.circle}>
+          <Image source={require('../images/fridge.png')} style={styles.logo} />
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.buttonText1}>Create Account</Text>
+        </TouchableOpacity>
+        <Text style={styles.orText}>or</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.buttonText2}>Sign In</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.mainContainer}>
-        <Image source={require('../images/Ramen.png')} style={styles.mainImage} />
-        <Text style={styles.slogan}>Snap, Cook, Count!</Text>
-        <Text style={styles.subtitle}>
-          Turn Ingredients into recipes with calorie confidence
-        </Text>
-      </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText} onPress={navHome}>Get started</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: '#FFDCAE', // a warm earthy color
-  },
-  headerContainer: {
-    marginTop: 50, // adjust to your liking
-  },
-  logo: {
-    width: 100, // adjust to your image size
-    height: 100, // adjust to your image size
-    resizeMode: 'contain',
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#6B4226', // a color that complements the background
-    marginTop: 10, // adjust to your liking
-  },
-  mainContainer: {
-    alignItems: 'center',
-  },
-  mainImage: {
-    width: 250, // adjust to your image size
-    height: 250, // adjust to your image size
-    resizeMode: 'contain',
-  },
-  slogan: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#6B4226',
-    marginVertical: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#6B4226',
-    textAlign: 'center',
-    paddingHorizontal: 20, // adjust to your liking
-  },
-  button: {
-    backgroundColor: '#E88E2D', // a vibrant call-to-action color
-    padding: 15,
-    borderRadius: 30,
-    marginBottom: 50, // adjust to your liking
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFF',
-  },
-});
+    );
+  };
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#FFA500', // Example color
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    title: {
+      fontSize: 36,
+      fontWeight: 'bold',
+      color: '#fff',
+      marginBottom:10,
+    },
+    subtitle: {
+      fontSize: 24,
+      color: '#fff',
+      marginBottom: 40,
+    },
+    circle: {
+      backgroundColor: '#FFD580', // This should be the color of the circle
+      borderRadius: 100, // Half of the width/height to make it a perfect circle
+      width: 200, // Circle size
+      height: 200, // Circle size
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 20,
+    },
+    logo: {
+      margin: 40,
+    },
+    button: {
+      backgroundColor: '#fff',
+      padding: 15,
+      margin: 10,
+      borderRadius: 25,
+      width: '80%',
+      alignItems: 'center',
+    },
+    buttonText1: {
+      fontSize: 18,
+      color: '#FFA500', // Example color
+      fontWeight: 'bold',
+    },
+    buttonText2: {
+      fontSize: 18,
+      color: 'orange', // Example color
+      fontWeight: 'bold',
+    },
+    orText: {
+      color: '#fff',
+      fontSize: 16,
+    },
+  });
 
 export default WelcomeScreen;
