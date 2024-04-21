@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; // Make sure this package is installed
+import { useRoute } from '@react-navigation/native';
 
-const RecipesScreen = ({navigation, ingredients}) => {
+const RecipesScreen = ({navigation}) => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const route = useRoute();
+  const ingredients = JSON.parse(route.params?.data);
+
+
+
+  console.log('Gemini Response:', geminiResponse);
+
   useEffect(() => {
-    const ingredients = ['tomatoes', 'carrots', 'onions', 'celery'];
+    //const ingredients = ['tomatoes', 'carrots', 'onions', 'celery'];
     const arrayIngredients = ingredients.join(',+');
     const apiKey = '8cf0bcaf19994ea4b3a57d7449e0e192'; // Replace with your actual API key
     const fetchRecipes = async () => {

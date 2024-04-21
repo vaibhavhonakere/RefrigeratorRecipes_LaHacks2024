@@ -91,6 +91,11 @@ export default function Home({navigation}) {
             style={{ height: 400, width: '100%' }}
             source={{ uri: image }}
           />
+
+      {selected &&  response && (
+        <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
+        title="Show Recipes">Show Recipes</Button>
+      )}
         </View>
       )}
 
