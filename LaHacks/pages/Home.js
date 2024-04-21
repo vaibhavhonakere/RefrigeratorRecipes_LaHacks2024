@@ -122,15 +122,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as MediaLibrary from 'expo-media-library';
 import React, {useState, useEffect} from 'react';
 import { Button, IconButton, MD3Colors } from 'react-native-paper';
 import { getGeminiVisionRes } from '../src/api/gemini_vision';
 import LottieView from 'lottie-react-native';
+
 export default function Home({navigation}) {
   const [image, setImage] = useState('');
   const [foodName, setFoodName] = useState('');
   const [selected, setSelect] = useState(false);
   const [response, setResponse] = useState(null);
+  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const [type, setType] = useState(Camera.Contants.Type.back);
+  const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
+  const cameraRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      MediaLibrary.requestPermissionsAsync();
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === 'granted');
+    })(); 
+  }, []);
+
   const options = {
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     quality: 1,
