@@ -11,7 +11,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import WelcomeScreen from './pages/WelcomeScreen';
 import Dishes from './pages/Dishes';
+import Recipe from './pages/Recipe';
 import Cam from './pages/Cam';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +44,10 @@ export default function App() {
         <Stack.Screen
           name='Dishes'
           component={Dishes}
+        />
+        <Stack.Screen
+            name='Recipe'
+            component={Recipe}
         />
       </Stack.Navigator>
     </NavigationContainer>
