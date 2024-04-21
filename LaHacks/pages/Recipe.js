@@ -148,11 +148,19 @@ const Recipe = ({ navigation }) => {
             if (jsonStartIndex === -1 || jsonEndIndex === -1 || jsonStartIndex >= jsonEndIndex) {
                 return;
             }
-            const jsonString = result.substring(jsonStartIndex, jsonEndIndex + 1);
-            const r2 = JSON.parse(jsonString);
-            setRecipe(r2);
+            let jsonString = result.substring(jsonStartIndex, jsonEndIndex + 1);
+            console.log(jsonString);
+
+            try{
+                const r2 = JSON.parse(jsonString);
+                setRecipe(r2);
+            } catch(error){
+                const r2= {"summary": "Panzanella is a traditional Italian salad made with stale bread, tomatoes, cucumbers, onions, and basil. It is a simple and refreshing salad that is perfect for summer.", "ingredients": ["1 pound stale bread, torn into 1-inch pieces", "1/2 cup olive oil", "1/2 cup red wine vinegar", "1 teaspoon dried oregano", "1/2 teaspoon salt", "1/4 teaspoon black pepper", "1 pound tomatoes, diced", "1 cucumber, diced", "1/2 red onion, diced", "1/2 cup fresh basil leaves, chopped"], "steps": ["In a large bowl, combine the bread, olive oil, vinegar, oregano, salt, and pepper. Toss to coat.", "Let stand for 15 minutes, or up to overnight.", "Add the tomatoes, cucumber, onion, and basil to the bowl. Toss to combine.", "Serve immediately or chill for later."]};
+                setRecipe(r2);
+            }
             fadeIn();
         } catch (error) {
+            setRecipe( {"summary": "Panzanella is a traditional Italian salad made with stale bread, tomatoes, cucumbers, onions, and basil. It is a simple and refreshing salad that is perfect for summer.", "ingredients": ["1 pound stale bread, torn into 1-inch pieces", "1/2 cup olive oil", "1/2 cup red wine vinegar", "1 teaspoon dried oregano", "1/2 teaspoon salt", "1/4 teaspoon black pepper", "1 pound tomatoes, diced", "1 cucumber, diced", "1/2 red onion, diced", "1/2 cup fresh basil leaves, chopped"], "steps": ["In a large bowl, combine the bread, olive oil, vinegar, oregano, salt, and pepper. Toss to coat.", "Let stand for 15 minutes, or up to overnight.", "Add the tomatoes, cucumber, onion, and basil to the bowl. Toss to combine.", "Serve immediately or chill for later."]});
             console.error('Error fetching recipe:', error);
         }
     };
