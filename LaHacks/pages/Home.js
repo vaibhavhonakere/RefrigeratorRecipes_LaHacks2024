@@ -123,7 +123,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
-import React, {useState, useEffect} from 'react';
+import {Camera, CameraType} from 'expo-camera';
+import React, {useState, useEffect, useRef} from 'react';
 import { Button, IconButton, MD3Colors } from 'react-native-paper';
 import { getGeminiVisionRes } from '../src/api/gemini_vision';
 import LottieView from 'lottie-react-native';
@@ -134,7 +135,7 @@ export default function Home({navigation}) {
   const [selected, setSelect] = useState(false);
   const [response, setResponse] = useState(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [type, setType] = useState(Camera.Contants.Type.back);
+  const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = useRef(null);
 
@@ -147,34 +148,53 @@ export default function Home({navigation}) {
   }, []);
 
   const options = {
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    // mediaTypes: ImagePicker.MediaTypeOptions.Images,
     quality: 1,
     base64: true,
   };
+
   const handleImageSelect = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync(options);
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      const base64Image = result.assets[0].base64;
+      
+        const result = await cameraRef.current.takePictureAsync(options);
+        // console.log('data:', result);
+        setImage(result.uri);
+     
+      console.log("after picture");
+       const base64Image = result.base64;
       setSelect(true);
-      setResponse(null);
+      // setResponse(null);
+  
       try {
+       console.log('before API call');
         const apiResponse = await getGeminiVisionRes(base64Image);
-        console.log('API Response Home:', apiResponse)
+       console.log('API Response Home:', apiResponse)
         setResponse(apiResponse);
         setFoodName(apiResponse);
       } catch (error) {
-        console.error('Error fetching Gemini Vision response:', error);
+        // console.error('Error fetching Gemini Vision response:', error);
         setResponse('error');
       }
-    }
   }
+
+
+  if(hasCameraPermission === null) {
+    return <Text>No access to camera</Text>
+  }
+
+
   return (
 
     <View style={styles.container}>
       {/* ... (your other components) */}
+      {selected == false && <Camera
+        style = {styles.camera}
+        type = {type}
+        flashMode = {flash}
+        ref = {cameraRef}
+      >
+      </Camera>}
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Upload Your Ingredients</Text>
+        <Text style={[styles.headerText, {color: "black"}]}>Upload Your Ingredients</Text>
       </View>
 
       <View style={{ flex: 1, justifyContent: 'center'}}> 
@@ -202,7 +222,7 @@ export default function Home({navigation}) {
           <IconButton
             icon="camera"
             mode="contained"
-            iconColor={MD3Colors.primary1}
+            iconColor="black"
             size={50}
             onPress={handleImageSelect}
           />
@@ -215,7 +235,10 @@ export default function Home({navigation}) {
           title="Show Recipes"
           style={styles.showRecipesButton}>Show Recipes</Button>
       )}
-
+      <Image
+        source = {require('../images/backIngred.png')}
+        style = {styles.chefImage}
+      />
       <StatusBar style="auto" />
     </View>
     // <View style={styles.container}>
@@ -308,6 +331,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAD398',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  camera: {
+    flex: 1,
+    boarderRadius: 20,
+    height: 150,
+    width: 300,
   },
   responseContainer: {
     justifyContent: 'center',
