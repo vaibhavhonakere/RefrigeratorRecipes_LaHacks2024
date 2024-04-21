@@ -18,7 +18,7 @@ export async function getGeminiVisionRes(base64) {
   // For text-and-image input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
-  const prompt = "Classify the food in this image, return response in one word";
+  const prompt = "Give me a Javascript string array of the name of all the food ingrediants found in the photo. Only return the Javascript string array in your response, do not return anything else.";
 
   const imageParts = [
     fileToGenerativePart(base64, "image/png")

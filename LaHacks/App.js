@@ -10,7 +10,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import WelcomeScreen from './pages/WelcomeScreen';
-import Loading from './pages/Loading';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,11 +35,6 @@ export default function App() {
           name='WelcomeScreen'
           component={WelcomeScreen}
         />
-        <Stack.Screen
-          name='Loading'
-          component={Loading}
-          // options={{ title: 'Loading'}} 
-        />  
         {/* <Stack.Screen
           name='Loading'
           component={Loading}

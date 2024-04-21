@@ -12,9 +12,6 @@ export default function Home({navigation}) {
   const [selected, setSelect] = useState(false);
   const [response, setResponse] = useState(null); 
 
-  const navLoading = () => {
-    navigation.navigate('Loading');
-  }
 
   const options = { 
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -57,7 +54,12 @@ export default function Home({navigation}) {
       )}
 
       {selected && response !== null && (
+        
         <View style={styles.responseContainer}>
+          <Image
+            style={{ height: 400, width: '100%' }}
+            source={{ uri: image }}
+         />
           <Text>{`This is a ${foodName}`}</Text>
         </View>
       )}
@@ -83,15 +85,16 @@ export default function Home({navigation}) {
               marginTop: 15
             }}
           >
-            <Text>Select Image</Text> 
           </TouchableOpacity>
+
+          <Image
+            style={{ height: 400, width: '100%' }}
+            source={{ uri: image }}
+          />
         </View>
       )}
 
-      <Image
-        style={{ height: 400, width: '100%' }}
-        source={{ uri: image }}
-      />
+      
 
       <StatusBar style="auto" />
     </View>
@@ -101,7 +104,7 @@ export default function Home({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FAD398',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 15,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#FAD398',
     alignItems: 'center' 
   }
 });
