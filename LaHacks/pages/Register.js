@@ -165,13 +165,17 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
+import { Ionicons } from '@expo/vector-icons';
+import {useRoute} from "@react-navigation/native"; // Make sure to install @expo/vector-icons
 
 const Register = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  const route = useRoute();
+  const ingredients = JSON.parse(route.params?.data);
 
   // Implement the sign-up logic
   const handleSignUp = () => {
