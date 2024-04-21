@@ -163,7 +163,8 @@
 // export default Register;
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, CheckBox } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { CheckBox } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
 
 const Register = ({navigation}) => {
