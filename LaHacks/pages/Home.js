@@ -186,13 +186,15 @@ export default function Home({navigation}) {
 
     <View style={styles.container}>
       {/* ... (your other components) */}
-      {selected == false && <Camera
+      {/* {selected == false && <Camera
         style = {styles.camera}
         type = {type}
         flashMode = {flash}
         ref = {cameraRef}
       >
-      </Camera>}
+      </Camera>} */}
+
+
       <View style={styles.headerContainer}>
         <Text style={[styles.headerText, {color: "black"}]}>Upload Your Ingredients</Text>
       </View>
@@ -224,17 +226,17 @@ export default function Home({navigation}) {
             mode="contained"
             iconColor="black"
             size={50}
-            onPress={handleImageSelect}
+            onPress={() => navigation.navigate('Cam')}
           />
         )}
       </View>
 
       {/* Show the "Show Recipes" button if there's a response */}
-      {response && (
+      {/* {response && (
         <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
           title="Show Recipes"
           style={styles.showRecipesButton}>Show Recipes</Button>
-      )}
+      )} */}
       <Image
         source = {require('../images/backIngred.png')}
         style = {styles.chefImage}
@@ -375,9 +377,10 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 28, // Larger font size
+    paddingTop: 30, // Add space between the header and the content
     fontWeight: 'bold', // Bold font weight
     color: '#DAA599', // A gold-like color for contrast and to "pop"
-    textShadowColor: 'rgba(0, 0, 0, 0.90)', // Shadow color
+    //textShadowColor: 'rgba(0, 0, 0, 0.90)', // Shadow color
     // textShadowOffset: { width: -1, height: 1 }, // Shadow offset
     textShadowRadius: 10, // Shadow blur radius
   },

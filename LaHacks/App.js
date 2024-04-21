@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import WelcomeScreen from './pages/WelcomeScreen';
 import Dishes from './pages/Dishes';
+import Cam from './pages/Cam';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,11 @@ export default function App() {
           name='Home'
           component={Home}
           // options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name='Cam'
+          component={Cam}
+          // options={{ title: 'Login' }}
         />
         <Stack.Screen
           name='Login'
