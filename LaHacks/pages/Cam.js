@@ -64,14 +64,15 @@ export default function Cam({navigation}) {
   return (
 
     <View style={styles.container}>
-      {/* ... (your other components) */}
-      {selected == false && <Camera
-        style = {styles.camera}
-        type = {type}
-        flashMode = {flash}
-        ref = {cameraRef}
-      >
-      </Camera>}
+      <View style={styles.cameraContainer}>
+        {selected == false && <Camera
+          style = {styles.camera}
+          type = {type}
+          flashMode = {flash}
+          ref = {cameraRef}
+        />}
+      </View>
+
       <View style={styles.headerContainer}>
         <Text style={[styles.headerText, {color: "black"}]}>Upload Your Ingredients</Text>
       </View>
@@ -126,7 +127,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cameraContainer: { // New style for the container
+    paddingTop: 80,  // Initial padding
+    marginTop: 30,   // Adjust this for camera offset
+    flex: 1,
+    boarderRadius: 20,
+    height: 150,
+    width: 300,
+  },
+
   camera: {
+    paddingTop: 80,
     flex: 1,
     boarderRadius: 20,
     height: 150,
@@ -168,6 +179,7 @@ const styles = StyleSheet.create({
     // Add shadow or elevation if you want to give depth, optional
   },
   headerText: {
+    paddingTop: 80,
     fontSize: 28, // Larger font size
     fontWeight: 'bold', // Bold font weight
     color: '#DAA599', // A gold-like color for contrast and to "pop"
