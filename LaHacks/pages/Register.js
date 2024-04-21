@@ -166,7 +166,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, CheckBox } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
 
-const Register = () => {
+const Register = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
@@ -183,6 +183,9 @@ const Register = () => {
     console.log('Sign Up with Google');
     // Proceed with Google sign-up process
   };
+  const navLogin = () => {
+    navigation.navigate('Login');
+  }
 
   return (
     <View style={styles.container}>
@@ -233,7 +236,7 @@ const Register = () => {
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.signInButton}>
-        <Text style={styles.signInText}>Already have an account? Sign In</Text>
+        <Text style={styles.signInText} onPress={navLogin}>Already have an account? Sign In</Text>
       </TouchableOpacity>
     </View>
   );
