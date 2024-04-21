@@ -186,13 +186,15 @@ export default function Home({navigation}) {
 
     <View style={styles.container}>
       {/* ... (your other components) */}
-      {selected == false && <Camera
+      {/* {selected == false && <Camera
         style = {styles.camera}
         type = {type}
         flashMode = {flash}
         ref = {cameraRef}
       >
-      </Camera>}
+      </Camera>} */}
+
+
       <View style={styles.headerContainer}>
         <Text style={[styles.headerText, {color: "black"}]}>Upload Your Ingredients</Text>
       </View>
@@ -224,17 +226,17 @@ export default function Home({navigation}) {
             mode="contained"
             iconColor="black"
             size={50}
-            onPress={handleImageSelect}
+            onPress={() => navigation.navigate('Cam')}
           />
         )}
       </View>
 
       {/* Show the "Show Recipes" button if there's a response */}
-      {response && (
+      {/* {response && (
         <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
           title="Show Recipes"
           style={styles.showRecipesButton}>Show Recipes</Button>
-      )}
+      )} */}
       <Image
         source = {require('../images/backIngred.png')}
         style = {styles.chefImage}
