@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FFD580',
     padding: 20,
+    backgroundColor: 'FAD398',
   },
   welcomeBack: {
     fontSize: 22,
