@@ -44,11 +44,6 @@ export default function Home({navigation}) {
   return (
     <View style={styles.container}>
 
-      {selected &&  response && (
-        <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
-        title="Show Recipes">Show Recipes</Button>
-      )}
-
       {selected && response === null && (
         <LottieView
           source={require('../images/bowlanimation.json')} 
@@ -96,6 +91,11 @@ export default function Home({navigation}) {
             style={{ height: 400, width: '100%' }}
             source={{ uri: image }}
           />
+
+      {selected &&  response && (
+        <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
+        title="Show Recipes">Show Recipes</Button>
+      )}
         </View>
       )}
 
