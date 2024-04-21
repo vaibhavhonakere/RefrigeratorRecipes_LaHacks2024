@@ -12,17 +12,24 @@ import Register from './pages/Register';
 import WelcomeScreen from './pages/WelcomeScreen';
 import Dishes from './pages/Dishes';
 import Recipe from './pages/Recipe';
+import Cam from './pages/Cam';
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name='Home'
           component={Home}
           // options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name='Cam'
+          component={Cam}
+          // options={{ title: 'Login' }}
         />
         <Stack.Screen
           name='Login'
