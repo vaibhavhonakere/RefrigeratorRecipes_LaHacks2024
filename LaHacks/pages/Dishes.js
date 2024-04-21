@@ -9,7 +9,9 @@ const RecipesScreen = ({navigation, ingredients}) => {
   const [loading, setLoading] = useState(false);
 
   const route = useRoute();
-  const ingredients = route.params?.data;
+  const ingredients = JSON.parse(route.params?.data);
+
+
 
   console.log('Gemini Response:', geminiResponse);
 
