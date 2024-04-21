@@ -22,17 +22,14 @@ export default function App() {
         <Stack.Screen
           name='Home'
           component={Home}
-          // options={{ title: 'Home' }}
         />
         <Stack.Screen
           name='Cam'
           component={Cam}
-          // options={{ title: 'Login' }}
         />
         <Stack.Screen
           name='Login'
           component={Login}
-          // options={{ title: 'Login' }}
         />
         <Stack.Screen
           name='Register'
@@ -46,15 +43,6 @@ export default function App() {
           name='Dishes'
           component={Dishes}
         />
-        {/* <Stack.Screen
-          name='Loading'
-          component={Loading}
-          options={{ title: 'Loading'}}
-        />
-        <Stack.Screen name='RecipeList'
-          component={RecipeList}
-          options={{ title: 'RecipeList'}}
-        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import {Camera, CameraType} from 'expo-camera';
 import React, {useState, useEffect, useRef} from 'react';
@@ -27,42 +26,30 @@ export default function Cam({navigation}) {
   }, []);
 
   const options = {
-    // mediaTypes: ImagePicker.MediaTypeOptions.Images,
     quality: 1,
     base64: true,
   };
 
   const handleImageSelect = async () => {
-      
         const result = await cameraRef.current.takePictureAsync(options);
-        // console.log('data:', result);
         setImage(result.uri);
-     
-      console.log("after picture");
        const base64Image = result.base64;
       setSelect(true);
-      // setResponse(null);
   
       try {
-       console.log('before API call');
         const apiResponse = await getGeminiVisionRes(base64Image);
-       console.log('API Response Home:', apiResponse)
         setResponse(apiResponse);
         setFoodName(apiResponse);
       } catch (error) {
-        // console.error('Error fetching Gemini Vision response:', error);
         setResponse('error');
       }
   }
-
 
   if(hasCameraPermission === null) {
     return <Text>No access to camera</Text>
   }
 
-
   return (
-
     <View style={styles.container}>
       <View style={styles.cameraContainer}>
         {selected == false && <Camera
@@ -94,7 +81,6 @@ export default function Cam({navigation}) {
               style={styles.imageStyle}
               source={{ uri: image }}
             />
-            {/* <Text style={styles.showRecipesText}>Show Recipes</Text> */}
           </View>
         )}
         
@@ -109,7 +95,6 @@ export default function Cam({navigation}) {
         )}
       </View>
 
-      {/* Show the "Show Recipes" button if there's a response */}
       {response && (
         <Button onPress={() => navigation.navigate('Dishes', { data: foodName })}
           title="Show Recipes"
