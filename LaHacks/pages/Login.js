@@ -1,81 +1,63 @@
-import React, { useState, useContext } from 'react';
-import { View, TextInput, Text, Image, StyleSheet, Alert } from 'react-native';
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from '../Backend_Firebase/config';
-import Button from '../components/Button';;
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Make sure to install @expo/vector-icons
 
-const Login = ({ navigation }) => {
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const respondBack = () => { 
-        if (userName.length === 0) {
-            Alert.alert("Error", "Need to set UserName to more than 0 characters");
-        } else if (password.length === 0) {
-            Alert.alert("Error", "Need to set Password to more than 0 characters");
-        } else {
-            navigation.navigate('Home');
-            // signInWithEmailAndPassword(auth, userName, password)
-            //     .then((userCredential) => {
-            //         //setIsSignedIn(true);
-            //         //navigation.navigate("Introhome"); // Adjust the navigation route as necessary
-            //         navigation.navigate('Restrictions')
-            //     })
-            //     .catch((error) => {
-            //         const errorCode = error.code;
-            //         let errorMessage = "Authentication failed";
-            //         if (errorCode === 'auth/user-not-found') {
-            //             errorMessage = "Email is not found";
-            //         } else if (errorCode === 'auth/wrong-password') {
-            //             errorMessage = "Password is Incorrect";
-            //         }
-            //         Alert.alert("Error", errorMessage);
-            //     });
-        }
-    };
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const navReg = () => {
-        navigation.navigate("Register"); // Adjust the navigation route as necessary
-    };
+  // Implement the sign-in logic
+  const handleSignIn = () => {
+    console.log('Sign In with email:', email, 'password:', password);
+    navigation.navigate('Home');
+    // Proceed with the sign-in process
+  };
 
-    return (
-        <View style={styles.container}>
-            {/* <Image source={logo} style={styles.logo} /> */}
+  // Implement the Google sign-in logic
+  const handleGoogleSignIn = () => {
+    console.log('Sign In with Google');
+    // Proceed with Google sign-in process
+  };
 
-            <View style={styles.loginContainer}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="User:"
-                  placeholderTextColor="#265073" 
-                  value={userName}
-                  onChangeText={setUserName}
-                  autoCapitalize="none"
-                />
-                <TextInput
-                  style={styles.input}
-                  placeholder="Pass:"
-                  placeholderTextColor="#265073"
-                  value={password}
-                  onChangeText={setPassword}
-                  secureTextEntry
-                />
-                <Button
-                  text='Log in'
-                  onPress={respondBack}
-                    style={{
-                      ...styles.button,
-                      backgroundColor: (userName !== '' && password !== '') ? '#265073' : '#ccc',
-                    }}
-                    disabled={!(userName != '' && password != '')}
-                    textStyles={styles.text}>
-                      {/* <Image source={require('../icons/arrow.png')}></Image> */}
-                </Button>
-            </View>
-            <Text style={styles.suggestionText}>
-                Don't have an account?{" "}
-                <Text onPress={navReg} style={styles.registerButton}>Register Here</Text>
-            </Text>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcomeBack}>Hi, Welcome Back! 👋</Text>
+      <Text style={styles.welcomeSubtext}>Hello again, you've been missed!</Text>
+      
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          style={styles.input}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <TextInput
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          style={styles.input}
+          secureTextEntry
+        />
+      </View>
+      
+      <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
+        <Text style={styles.signInButtonText}>Sign In</Text>
+      </TouchableOpacity>
+      
+      <Text style={styles.orText}>or</Text>
+      
+      <TouchableOpacity style={styles.googleSignInButton} onPress={handleGoogleSignIn}>
+        <Ionicons name="logo-google" size={20} color="#DB4437" />
+        <Text style={styles.googleSignInButtonText}>Sign In with Google</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.signUpButton}>
+        <Text style={styles.signUpText}>Don’t have an account ? Sign Up</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -83,67 +65,69 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#FFD580',
     padding: 20,
   },
-  title: {
-    fontSize: 25,
+  welcomeBack: {
+    fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
+    marginBottom: 8,
   },
-  loginContainer: {
-    marginBottom: 20,
-    alignItems: 'center',
+  welcomeSubtext: {
+    fontSize: 16,
+    color: 'grey',
+    marginBottom: 32,
   },
   inputContainer: {
-    marginBottom: 20,
+    width: '100%',
   },
   input: {
-    fontSize: 20,
-    height: 40,
+    height: 50,
+    backgroundColor: '#F0F0F0',
+    marginBottom: 16,
+    paddingHorizontal: 14,
     borderRadius: 10,
-    marginBottom: 10,
-    padding: 10,
-    width: 330,
-    backgroundColor: '#F8FDED',
-    color: '#265073',
   },
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-},
-  button: {
-    backgroundColor: '#ccc',
-    padding: 10,
-    borderRadius: 15,
-    margin: 15,
-    marginTop: 28,
-    width: 90,
-  },
-  text: {
-    color: '#fff',
-    color: '#FEFFFD',
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  imgContainer: {
+  signInButton: {
+    backgroundColor: '#FFA500',
+    paddingVertical: 12,
+    width: '100%',
+    borderRadius: 10,
     alignItems: 'center',
+    marginBottom: 16,
   },
-  logo: {
-    marginBottom: 20,
-    width: 100,
-    height: 100,
+  signInButtonText: {
+    fontSize: 18,
+    color: '#FFF',
+    fontWeight: 'bold',
   },
-    suggestionText: {
-      marginTop: 20,
+  orText: {
+    fontSize: 14,
+    color: 'grey',
+    marginVertical: 16,
   },
-  registerButton: {
-      color: 'blue',
-  }
+  googleSignInButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+    paddingVertical: 12,
+    width: '100%',
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  googleSignInButtonText: {
+    fontSize: 18,
+    color: 'black',
+    marginLeft: 10,
+  },
+  signUpButton: {
+    marginTop: 16,
+  },
+  signUpText: {
+    color: 'black',
+  },
 });
 
 export default Login;
+

@@ -7,7 +7,7 @@ const WelcomeScreen = ({ navigation }) => {
         <Text style={styles.title}>Snacking Time</Text>
         <Text style={styles.subtitle}>Cooking App</Text>
         <View style={styles.circle}>
-          <Image source={require('../images/Logo.png')} style={styles.logo} />
+          <Image source={require('../images/fridge.png')} style={styles.logo} />
         </View>
         <TouchableOpacity
           style={styles.button}
@@ -32,13 +32,15 @@ const WelcomeScreen = ({ navigation }) => {
       justifyContent: 'center',
     },
     title: {
-      fontSize: 32,
+      fontSize: 36,
       fontWeight: 'bold',
       color: '#fff',
+      marginBottom:10,
     },
     subtitle: {
       fontSize: 24,
       color: '#fff',
+      marginBottom: 40,
     },
     circle: {
       backgroundColor: '#FFD580', // This should be the color of the circle
@@ -50,9 +52,7 @@ const WelcomeScreen = ({ navigation }) => {
       marginBottom: 20,
     },
     logo: {
-      width: 100,
-      height: 100,
-      margin: 20,
+      margin: 40,
     },
     button: {
       backgroundColor: '#fff',

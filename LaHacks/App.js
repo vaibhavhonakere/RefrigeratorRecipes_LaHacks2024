@@ -10,13 +10,14 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import WelcomeScreen from './pages/WelcomeScreen';
+import Dishes from './pages/Dishes';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='WelcomeScreen' screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName='Dishes' screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name='Home'
           component={Home}
@@ -34,6 +35,10 @@ export default function App() {
         <Stack.Screen
           name='WelcomeScreen'
           component={WelcomeScreen}
+        />
+        <Stack.Screen
+          name='Dishes'
+          component={Dishes}
         />
         {/* <Stack.Screen
           name='Loading'
